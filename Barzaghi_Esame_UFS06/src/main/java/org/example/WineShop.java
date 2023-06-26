@@ -40,13 +40,13 @@ public class WineShop {
         return responseString + design.getDown();
     }
 
-    private String white() {
+    private String coloured(String colore) {
         Frontend design = new Frontend();
-        List<Wine> whiteWines = new ArrayList<>();
+        List<Wine> newwineWines = new ArrayList<>();
 
         for (Wine wine : wineList) {
-            if (wine.getTipo().equalsIgnoreCase("bianco")) {
-                whiteWines.add(wine);
+            if (wine.getTipo().equalsIgnoreCase(colore)){
+                newwineWines.add(wine);
             }
         }
 
@@ -54,37 +54,9 @@ public class WineShop {
 
         String jsonWine = "";
         Wine typeWine = null;
-        for (Wine wine : whiteWines) {
+        for (Wine wine : newwineWines) {
             typeWine = wine;
             jsonWine = gson.toJson(wine);
-
-            if (typeWine != null) {
-                responseString += "<tr><td>" + typeWine.getId() + "</td> <td>"
-                    + typeWine.getNome() + "</td> <td>"
-                    + typeWine.getPrezzo() + "</td> <td>"
-                    + typeWine.getTipo() + "</td> </tr>";
-            }
-        }
-        return responseString + design.getDown();
-    }
-
-
-    private String red() {
-        Frontend design = new Frontend();
-        List<Wine> redWines = new ArrayList<>();
-
-        for (Wine wine : wineList) {
-            if (wine.getTipo().equalsIgnoreCase("rosso")) {
-                redWines.add(wine);
-            }
-        }
-
-        String responseString = design.getUp();
-        String jsonWine = "";
-        Wine typeWine = null;
-        for (Wine wine : redWines) {
-                typeWine = wine;
-                jsonWine = gson.toJson(wine);
 
             if (typeWine != null) {
                 responseString += "<tr><td>" + typeWine.getId() + "</td> <td>"
@@ -125,10 +97,15 @@ public class WineShop {
     }
 
     String ShopActions(String command) {
+
+        String colour = command;
+
         return switch (command.toLowerCase()) {
             case "all" -> toJSON();
-            case "white" -> white();
-            case "red" -> red();
+
+            case "red" -> coloured("rosso");
+            case "white" -> coloured("bianco");
+
             case "sorted_by_name" -> nameSorted();
             case "sorted_by_price" -> priceSorted();
             default -> "Comando Errato";

@@ -30,6 +30,7 @@ public class MyHandler implements HttpHandler {
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
+
     }
 
     private String read(InputStream is) {
