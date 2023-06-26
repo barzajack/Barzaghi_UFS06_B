@@ -20,10 +20,7 @@ public class WineShop {
     }
 
     public static WineShop getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new WineShop();
-        }
-
+        if (INSTANCE == null) INSTANCE = new WineShop();
         return INSTANCE;
     }
 
@@ -32,39 +29,19 @@ public class WineShop {
     }
 
     private String toJSON() {
-        String responseString = "<!DOCTYPE html>" +
-                "<html>" +
-                "<style>" +
-                " body{ " +
-                " background-color: lightblue" +
-                "}" +
-                "table, th, td {" +
-                "  border:1px solid black;" +
-                "}" +
-                "</style>" +
-                "<body>" + "<h2>HTML Response Table</h2>" +
-                "<table style=\"width:100%\">" +
-                "<tr>" +
-                "<th>ID</th>" +
-                "<th>Nome</th>" +
-                "<th>Prezzo</th>" +
-                "<th>Tipo</th>" +
-                "</tr>";
+        Frontend design = new Frontend();
+        String responseString = design.getUp();
         for (Wine wine : wineList) {
             responseString += "<tr><td>" + wine.getId() + "</td> <td>"
                     + wine.getNome() + "</td> <td>"
                     + wine.getPrezzo() + "</td> <td>"
                     + wine.getTipo() + "</td> </tr>";
-
         }
-        responseString += "</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";
-        return responseString;
+        return responseString + design.getDown();
     }
 
     private String white() {
+        Frontend design = new Frontend();
         List<Wine> whiteWines = new ArrayList<>();
 
         for (Wine wine : wineList) {
@@ -73,24 +50,7 @@ public class WineShop {
             }
         }
 
-        String responseString = "<!DOCTYPE html>" +
-                "<html>" +
-                "<style>" +
-                " body{ " +
-                " background-color: lightblue" +
-                "}" +
-                "table, th, td {" +
-                "  border:1px solid black;" +
-                "}" +
-                "</style>" +
-                "<body>" + "<h2>HTML Response Table</h2>" +
-                "<table style=\"width:100%\">" +
-                "<tr>" +
-                "<th>ID</th>" +
-                "<th>Nome</th>" +
-                "<th>Prezzo</th>" +
-                "<th>Quantita</th>" +
-                "</tr>";
+        String responseString = design.getUp();
 
         String jsonWine = "";
         Wine typeWine = null;
@@ -105,17 +65,12 @@ public class WineShop {
                     + typeWine.getTipo() + "</td> </tr>";
             }
         }
-
-        return responseString +
-                "</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";
+        return responseString + design.getDown();
     }
 
 
-
     private String red() {
+        Frontend design = new Frontend();
         List<Wine> redWines = new ArrayList<>();
 
         for (Wine wine : wineList) {
@@ -124,24 +79,7 @@ public class WineShop {
             }
         }
 
-        String responseString = "<!DOCTYPE html>" +
-                "<html>" +
-                "<style>" +
-                " body{ " +
-                " background-color: lightblue" +
-                "}" +
-                "table, th, td {" +
-                "  border:1px solid black;" +
-                "}" +
-                "</style>" +
-                "<body>" + "<h2>HTML Response Table</h2>" +
-                "<table style=\"width:100%\">" +
-                "<tr>" +
-                "<th>ID</th>" +
-                "<th>Nome</th>" +
-                "<th>Prezzo</th>" +
-                "<th>Quantita</th>" +
-                "</tr>";
+        String responseString = design.getUp();
         String jsonWine = "";
         Wine typeWine = null;
         for (Wine wine : redWines) {
@@ -155,34 +93,12 @@ public class WineShop {
                     + typeWine.getTipo() + "</td> </tr>";
             }
         }
-
-        return responseString +
-                "</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";
+        return responseString + design.getDown();
     }
 
     private String nameSorted() {
-        String responseString =
-                "<!DOCTYPE html>" +
-                        "<html>" +
-                        "<style>" +
-                        " body{ " +
-                        " background-color: lightblue" +
-                        "}" +
-                        "table, th, td {" +
-                        "  border:1px solid black;" +
-                        "}" +
-                        "</style>" +
-                        "<body>" + "<h2>HTML Response Table</h2>" +
-                        "<table style=\"width:100%\">" +
-                        "<tr>" +
-                        "<th>ID</th>" +
-                        "<th>Nome</th>" +
-                        "<th>Prezzo</th>" +
-                        "<th>Quantita</th>" +
-                        "</tr>";
+        Frontend design = new Frontend();
+        String responseString = design.getUp();
         List<Wine> newwineList = new ArrayList<>(wineList);
         newwineList.sort(Comparator.comparing(Wine::getNome));
         for (Wine wine : newwineList) {
@@ -191,33 +107,12 @@ public class WineShop {
                     + wine.getPrezzo() + "</td> <td>"
                     + wine.getTipo() + "</td> </tr>";
         }
-        responseString += "</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";
-        return responseString;
+        return responseString + design.getDown();
     }
 
     private String priceSorted() {
-        String responseString =
-                "<!DOCTYPE html>" +
-                "<html>" +
-                    "<style>" +
-                        " body{ " +
-                        " background-color: lightblue" +
-                        "}" +
-                        "table, th, td {" +
-                        "  border:1px solid black;" +
-                    "}" +
-                    "</style>" +
-                    "<body>" + "<h2>HTML Response Table</h2>" +
-                        "<table style=\"width:100%\">" +
-                        "<tr>" +
-                            "<th>ID</th>" +
-                            "<th>Nome</th>" +
-                            "<th>Prezzo</th>" +
-                            "<th>Quantita</th>" +
-                        "</tr>";
+        Frontend design = new Frontend();
+        String responseString = design.getUp();
         List<Wine> newwineList = new ArrayList<>(wineList);
         newwineList.sort(Comparator.comparing(Wine::getPrezzo));
         for (Wine wine : newwineList) {
@@ -226,11 +121,7 @@ public class WineShop {
                     + wine.getPrezzo() + "</td> <td>"
                     + wine.getTipo() + "</td> </tr>";
         }
-        responseString += "</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";
-        return responseString;
+        return responseString + design.getDown();
     }
 
     String ShopActions(String command) {
